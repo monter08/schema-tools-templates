@@ -8,9 +8,11 @@ use validator::Validate;
 use regex::Regex;
 {% block use %}{% endblock use %}
 
+
 {% if formats is containing("decimal") %}
 use rust_decimal::Decimal;
 {% endif %}
+
 {% if formats is containing("date-time") %}
 use chrono::{DateTime, Utc};
 {% endif %}
@@ -72,11 +74,11 @@ pub enum {{ m::model_name(name = model.enum.name) }}Variant {
     {{ option }},
     {%- elif model.enum.type == "number" %}
     {{ m::enum_variant(name = option, base = m::model_name(name = model.enum.name) ) }} = {{ option }},
-    {%- else %} 
+    {%- else %}
     #[serde(rename = "{{ option }}")]
     {{ m::enum_variant(name = option, base = m::model_name(name = model.enum.name)) }},
     {% endif %}
-    {%- endfor %} 
+    {%- endfor %}
 }
 
 impl std::string::ToString for {{ m::model_name(name = model.enum.name) }}Variant {
@@ -115,7 +117,7 @@ impl std::str::FromStr for {{ m::model_name(name = model.enum.name) }}Variant {
 pub enum {{ m::model_name(name = model.wrapper.name) }} {
     {% for option in model.wrapper.models -%}
     {{ m::type(property = option) }}({{ m::type(property = option) }}),
-    {% endfor %} 
+    {% endfor %}
 }
 
 impl<'de> Deserialize<'de> for {{ m::model_name(name = model.wrapper.name) }} {
@@ -125,7 +127,7 @@ impl<'de> Deserialize<'de> for {{ m::model_name(name = model.wrapper.name) }} {
         {% for option in model.wrapper.models -%}
         {{ m::type(property = option) }}::deserialize(deserializer)
             .map(|t| Self::{{ m::type(property = option) }}(t))
-        {% endfor %} 
+        {% endfor %}
         {% else %}
         let data = &serde_json::Value::deserialize(deserializer)?;
         // todo: too many extra allocations - refactor
@@ -133,8 +135,8 @@ impl<'de> Deserialize<'de> for {{ m::model_name(name = model.wrapper.name) }} {
         if let Ok(result) = serde_json::from_value::<{{ m::type(property = option) }}>(data.clone()) {
             return Ok(Self::{{ m::type(property = option) }}(result));
         }
-        {% endfor %} 
-        
+        {% endfor %}
+
         Err(serde::de::Error::custom("Cannot deserialize wrapper"))
         {% endif %}
     }

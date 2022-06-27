@@ -1,5 +1,5 @@
 {% macro allowed_operations(endpoints, options) -%}{% filter trim %}
-{%- for endpoint in endpoints -%} 
+{%- for endpoint in endpoints -%}
 {{ endpoint.operation }} {% endfor -%}
 {% endfilter %}{%- endmacro allowed_operations %}
 
