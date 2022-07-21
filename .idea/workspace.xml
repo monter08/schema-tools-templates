@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e045075-0952-4172-b5ca-df80c40058fe" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rust/_common/macros.j2" beforeDir="false" afterPath="$PROJECT_DIR$/rust/_common/macros.j2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rust/_common/models.j2" beforeDir="false" afterPath="$PROJECT_DIR$/rust/_common/models.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust/client/endpoints.j2" beforeDir="false" afterPath="$PROJECT_DIR$/rust/client/endpoints.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust/client/extra.j2" beforeDir="false" afterPath="$PROJECT_DIR$/rust/client/extra.j2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
